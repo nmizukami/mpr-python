@@ -1,4 +1,4 @@
-
+---
 INPUT:
     # MPR input directory containing mapping file and geophysical attributes
     DIRE: /glade/p/ral/hap/mizukami/pnw-extrems/geospatial_data/geophysical/data_mpr
@@ -6,8 +6,8 @@ INPUT:
     MAP_FILE: spatialweights_grid_600m_to_HUC12.nc
 
 OUTPUT:
-    DIRE: /glade/p/ral/hap/mizukami/pnw-extrems/models/mpr
-    PARAM_FILE_NAME: param.nc
+    DIRE: /glade/u/home/mizukami/proj/pnw-extrems/models/mpr
+    PARAM_FILE_NAME: param1.nc
 
 
 # geophysical attribute meta
@@ -24,6 +24,7 @@ GEO_ATTR_TYPE:
         silt: silt_pct
         bulk_density: bulk_density
         organic_carbon: soc
+        bedrock: bedrock
     vegetation:
         igpg: vegclass
         canopy_height: ch
@@ -36,7 +37,7 @@ GEO_ATTR_TYPE:
 # mapping data meta
 MAPPING_VARS_META:
     polyid:
-        name: hruId
+        name: polyid #hruId
         dim: polyid
         type: int64
     overlaps:

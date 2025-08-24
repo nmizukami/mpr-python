@@ -18,6 +18,11 @@ import mpr.constant as const
 
 class transfer_function():
 
+    def bedrock_tf1(attr_data=None, param_data=None, param_cfg=None, coef=None):
+        # normalized precipitation
+        a = coef[0]*attr_data['bedrock']
+        return a
+
     def norm_prec_tf1(attr_data=None, param_data=None, param_cfg=None, coef=None):
         # normalized precipitation
         a = attr_data['prec'].mean(dim='month')
@@ -119,6 +124,10 @@ class transfer_function():
         # parameter is pore-size distribution index 0.1 - 3.0
         a = (2.0*param_data['retention_slope'] + 3.0)/(param_data['retention_slope'] + 3.0)*param_data['matric_potential'] * const.kPa2mH2O * (-1.0)
         return coef[0]*a
+
+    def windReductionParam_tf1(attr_data=None, param_data=None, param_cfg=None, coef=None):
+        a = logistic_fun(param_data['summerLAI'], A=param_cfg['min'], L=param_cfg['max'], x0=coef[0], k=coef[1])
+        return a
 
     def zScale_TOPMODEL_tf1(attr_data=None, param_data=None, param_cfg=None, coef=None):
         pass
